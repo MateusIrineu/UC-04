@@ -1,6 +1,6 @@
 # Curso de POO com JavaScript Puro
 
-A seguir, veja 10 aulas que cobrem os principais conceitos de Programação Orientada a Objetos (POO) utilizando JavaScript puro.
+A seguir, veja 12 aulas que cobrem os principais conceitos de Programação Orientada a Objetos (POO) utilizando JavaScript puro.
 
 ---
 
@@ -193,7 +193,7 @@ console.log(Util.somar(3, 4));
 
 ## Aula 10: Projeto Prático de POO
 - Desenvolvimento de um mini-projeto combinando os conceitos aprendidos.
-- Exemplo: Sistema simples de cadastro de usuários
+- Exemplo: Sistema simples de cadastro de usuários.
 ```js
 class Usuario {
     constructor(username, email) {
@@ -225,4 +225,90 @@ sistema.listarUsuarios();
 - Proposta: Adicione mais funcionalidades como atualização e remoção de usuários.
 
 ---
+
+## Aula 11: Atualização de Usuários
+- Implementação da funcionalidade para atualizar dados de usuários.
+- Exemplo:
+```js
+class Sistema {
+    constructor() {
+        this.usuarios = [];
+    }
+    cadastrar(usuario) {
+        this.usuarios.push(usuario);
+    }
+    atualizarUsuario(username, novosDados) {
+        const usuario = this.usuarios.find(u => u.username === username);
+        if (usuario) {
+            usuario.email = novosDados.email || usuario.email;
+            usuario.username = novosDados.username || usuario.username;
+            console.log(`Usuário ${username} atualizado.`);
+        } else {
+            console.log(`Usuário ${username} não encontrado.`);
+        }
+    }
+    listarUsuarios() {
+        this.usuarios.forEach(user => user.exibirInfo());
+    }
+}
+
+class Usuario {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+    exibirInfo() {
+        console.log(`Usuário: ${this.username}, Email: ${this.email}`);
+    }
+}
+
+const sistema = new Sistema();
+sistema.cadastrar(new Usuario("usuario1", "user1@example.com"));
+sistema.atualizarUsuario("usuario1", { email: "novoemail@example.com" });
+sistema.listarUsuarios();
+```
+
+---
+
+## Aula 12: Remoção de Usuários
+- Implementação da funcionalidade para remover usuários do sistema.
+- Exemplo:
+```js
+class Sistema {
+    constructor() {
+        this.usuarios = [];
+    }
+    cadastrar(usuario) {
+        this.usuarios.push(usuario);
+    }
+    removerUsuario(username) {
+        const quantidadeAntes = this.usuarios.length;
+        this.usuarios = this.usuarios.filter(u => u.username !== username);
+        if (this.usuarios.length < quantidadeAntes) {
+            console.log(`Usuário ${username} removido.`);
+        } else {
+            console.log(`Usuário ${username} não encontrado.`);
+        }
+    }
+    listarUsuarios() {
+        this.usuarios.forEach(user => user.exibirInfo());
+    }
+}
+
+class Usuario {
+    constructor(username, email) {
+        this.username = username;
+        this.email = email;
+    }
+    exibirInfo() {
+        console.log(`Usuário: ${this.username}, Email: ${this.email}`);
+    }
+}
+
+const sistema = new Sistema();
+sistema.cadastrar(new Usuario("usuario1", "user1@example.com"));
+sistema.cadastrar(new Usuario("usuario2", "user2@example.com"));
+sistema.removerUsuario("usuario1");
+sistema.listarUsuarios();
+```
 
