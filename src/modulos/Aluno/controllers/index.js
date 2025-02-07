@@ -1,5 +1,5 @@
-import  alunos  from "../../../config/database";
-import AlunoModel  from "../models/index";
+import  {alunos } from "../../../config/database.js";
+import { AlunoModel }  from "../models/index.js";
 
 export class AlunoController {
   // Create - criando o aluno no array alunos

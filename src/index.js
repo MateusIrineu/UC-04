@@ -1,4 +1,4 @@
-import  AlunoController  from './modulos/Aluno/controllers/index.js'
+import  {AlunoController}  from './modulos/Aluno/controllers/index.js'
 
 const aluno1 = new AlunoController()
 
