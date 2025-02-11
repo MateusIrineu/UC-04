@@ -1,14 +1,43 @@
-import  {AlunoController}  from './modulos/Aluno/controllers/index.js'
+import prompt from 'prompt-sync';
+
+import  {AlunoController}  from './modulos/Aluno/controllers/index.js';
 
 const aluno1 = new AlunoController()
 
-aluno1.criar("a9111","Irineu","ireneu@edum.senac.br","@123")
-aluno1.criar("a9222","Borges","borges@edum.senac.br","@123")
+export default function menuPrincipalAluno() {
+    const input = prompt();
+    const opcoes = [
+        "1 - Criar novo aluno",
+        "2 - Listar todos os alunos",
+        "3 - Editar aluno por matrícula",
+        "4 - Excluir todos os alunos",
+        "5 - Excluir por matrícula",
+        "0 - Sair"
+    ]
+    const menu = opcoes.join("\n");
+    console.log(menu);
+    let opcao = input("Escolha a opcção desejada: ");
+    console.clear();
+    switch(opcao) {
+        case "0":
+            break;
+        case "1":
+            criar();
+            break;
+        case "2":
+            listaPorMatricula();
+            break;
+        case "3":
+            editar();
+            break;
+        case "4":
+            deletarPorMatricula();
+            break;
+        case "5":
+            deletarTodos();
+            break
+    } 
+}
 
-aluno1.listarTodos()
-
-aluno1.deletarPorMatricula("a9111")
-aluno1.listarTodos()
-
-aluno1.editar('a9222',null,"borgeseditado@edum.senac.br",null)
-aluno1.listarTodos()
+console.clear();
+menuPrincipalAluno();
