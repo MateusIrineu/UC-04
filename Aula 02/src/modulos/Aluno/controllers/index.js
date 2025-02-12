@@ -1,3 +1,5 @@
+import prompt from 'prompt-sync';
+
 import { alunos } from "../../../config/database.js";
 import { AlunoModel } from "../models/index.js";
 import bcrypt from "bcrypt";
@@ -76,4 +78,21 @@ export class AlunoController {
       console.error("Erro ao tentar exibir os alunos", error.message);
     }
   }
+}
+
+
+function menuAlunos() {
+  const imput = prompt();
+  const opcoes = [
+    "1 - Criar novo aluno",
+    "2 - Editar aluno",
+    "3 - Deletar matrícula",
+    "4 - Deletar todos",
+    "5 - Listar por matrícula",
+    "6 - Listar todos"
+  ]
+  const menu = opcoes.join("\n");
+  console.log(menu);
+  let opcao = imput("Escolha a opção desejada: ");
+  console.log//
 }

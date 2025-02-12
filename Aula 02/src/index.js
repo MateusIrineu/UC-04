@@ -2,10 +2,8 @@ import prompt from 'prompt-sync';
 
 import  {AlunoController}  from './modulos/Aluno/controllers/index.js';
 
-const aluno1 = new AlunoController()
-
 export default function menuPrincipalAluno() {
-    const input = prompt();
+    const imput = prompt();
     const opcoes = [
         "1 - Criar novo aluno",
         "2 - Listar todos os alunos",
@@ -16,7 +14,7 @@ export default function menuPrincipalAluno() {
     ]
     const menu = opcoes.join("\n");
     console.log(menu);
-    let opcao = input("Escolha a opcção desejada: ");
+    let opcao = imput("Escolha a opcção desejada: ");
     console.clear();
     switch(opcao) {
         case "0":
