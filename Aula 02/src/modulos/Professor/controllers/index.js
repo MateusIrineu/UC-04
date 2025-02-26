@@ -57,7 +57,7 @@ export class ProfessorController {
 
     listarPorMatricula(matricula) {
         try {
-            const professor = professor.find((professor) => professor.getMatricula === matricula);
+            const professor = professores.find((professor) => professor.getMatricula === matricula);
             if (!professor) {
                 return console.log("Professor não encontrado");
             }
