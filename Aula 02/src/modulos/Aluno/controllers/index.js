@@ -6,10 +6,10 @@ import bcrypt from "bcrypt";
 
 export class AlunoController {
   // Create - criando o aluno no array alunos
-  criar(matricula, nome, email, senha) {
+  criar(matricula, nome, telefone, email, senha) {
     try {
       const senhaHash = bcrypt.hashSync(senha, 10);
-      const novoAluno = new AlunoModel(matricula, nome, email, senha = senhaHash );
+      const novoAluno = new AlunoModel(matricula, nome, telefone, email, senha = senhaHash );
       alunos.push(novoAluno);
       console.table(novoAluno);
     } catch (error) {
@@ -17,7 +17,7 @@ export class AlunoController {
     }
   }
 
-  editar(matricula, novoNome, novoEmail, novaSenha) {
+  editar(matricula, novoNome, novoTelefone, novoEmail, novaSenha) {
     try {
       const aluno = alunos.find((aluno) => aluno.getMatricula === matricula);
       if (!aluno) {
@@ -25,6 +25,7 @@ export class AlunoController {
       }
       aluno.nome = novoNome || aluno.nome;
       aluno.email = novoEmail || aluno.email;
+      aluno.telefone = novoTelefone || aluno.telefone;
       // Se nova senha for informada, criptografa-a
       aluno.senha = novaSenha ? bcrypt.hashSync(novaSenha, 10) : aluno.senha;
       
@@ -43,20 +44,20 @@ export class AlunoController {
       alunos.splice(index, 1);
       console.log("Aluno excluido com sucesso!");
     } catch (error) {
-      console.error("Erro ao tentar excluir o aluno", error.message);
+        console.error("Erro ao tentar excluir o aluno", error.message);
     }
   }
 
   deletarTodos() {
     try {
       alunos.length = 0;
-      console.log("Todos os alunos excluidos!");
+      console.log("Todos os alunos foram excluidos!");
     } catch (error) {
       console.error("Erro ao tentar excluir todos os alunos", error.message);
     }
   }
 
-  listaPorMatricula(matricula) {
+  listarPorMatricula(matricula) {
     try {
       const aluno = alunos.find((aluno) => aluno.getMatricula === matricula);
       if (!aluno) {
@@ -78,21 +79,4 @@ export class AlunoController {
       console.error("Erro ao tentar exibir os alunos", error.message);
     }
   }
-}
-
-
-function menuAlunos() {
-  const imput = prompt();
-  const opcoes = [
-    "1 - Criar novo aluno",
-    "2 - Editar aluno",
-    "3 - Deletar matrícula",
-    "4 - Deletar todos",
-    "5 - Listar por matrícula",
-    "6 - Listar todos"
-  ]
-  const menu = opcoes.join("\n");
-  console.log(menu);
-  let opcao = imput("Escolha a opção desejada: ");
-  console.log//
 }
