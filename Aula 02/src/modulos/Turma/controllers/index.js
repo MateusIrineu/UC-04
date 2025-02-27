@@ -1,11 +1,17 @@
 import prompt from 'prompt-sync';
 
-import { alunos, turmas } from '../../../config/database.js';
+import { alunos, turmas, professores } from '../../../config/database.js';
 import { TurmaModel } from '../models/index.js';
+import { ProfessorModel } from '../models/index.js';
 
 export class TurmaController {
-    criar(cod, nome, sala, capacidade) {
+    criar(cod, nome, sala, capacidade, matriculaProfessor = [], MmatriculaAluno = []) {
         try {
+
+            // verifica se o professor existe
+            const professor = professores.index((professor) => professor.matriculaProfessor === matricula);
+            if(!professor || (professor instanceof ProfessorModel)) {
+                return console.log("Professor não encontrado ou inválido!");
             const novaTurma = new TurmaModel(cod, nome, sala, capacidade);
             turmas.push(novaTurma);
             console.table(novaTurma);
